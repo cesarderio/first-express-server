@@ -6,7 +6,8 @@ const { response } = require('express');
 // ***** REQUIRES **********
 const express = require('express');
 require('dotenv').config();
-let data = require('./data/pets.json');
+// let data = require('./data/pets.json');
+// const cors = require('cors');
 
 console.log('heeyeye');
 
@@ -14,6 +15,8 @@ console.log('heeyeye');
 // app === server
 const app = express();
 
+// middleware to share resources across the internet
+// app.use(cors);
 
 // define my port
 const PORT = process.env.PORT || 3002;
@@ -36,25 +39,28 @@ app.get('/hello', (request, response)=>{
 });
 
 
-app.get('/pet', (request, response, next)=>{
-  try{
-    let species = request.query.species;
-    console.log(species);
-    // let petData = data.find(pet => pet.species === species);
-    let dataToGroom = data.find(pet => pet.species === species);
-    let dataToSend = new Pet(dataToGroom);
-    response.status(200).send(dataToSend);
-  } catch(error){
-    next(error);
-  }
-});
+// app.get('/pet', (request, response, next)=>{
+//   try{
+//     //let lat =
+//     // let lon =
+//     //let searchquerylocation =
+//     let species = request.query.species;
+//     console.log(species);
+//     // let petData = data.find(pet => pet.species === species);
+//     let dataToGroom = data.find(pet => pet.species === species);
+//     let dataToSend = new Pet(dataToGroom);
+//     response.status(200).send(dataToSend);
+//   } catch(error){
+//     next(error);
+//   }
+// });
 
-class Pet {
-  constructor(petObj){
-    this.name = petObj.name;
-    this.breed = petObj.breed;
-  }
-}
+// class Pet {
+//   constructor(petObj){
+//     this.name = petObj.name;
+//     this.breed = petObj.breed;
+//   }
+// }
 
 
 // catch all and should live at the bottom

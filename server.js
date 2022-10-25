@@ -2,9 +2,11 @@
 
 console.log('Yasss! Our first server!');
 
+const { response } = require('express');
 // ***** REQUIRES **********
 const express = require('express');
 require('dotenv').config();
+let data = require('./data/pets.json');
 
 console.log('heeyeye');
 
@@ -26,9 +28,47 @@ app.get('/', (request, response)=>{
   response.status(200).send('Welcome to my server');
 });
 
+app.get('/hello', (request, response)=>{
+  console.log(request.query);
+  let firstName = request.query.firstName;
+  let lastName = request.query.lastName;
+  response.status(200).send(`Hello ${firstName} ${lastName}! Welcome to my server`);
+});
+
+
+app.get('/pet', (request, response, next)=>{
+  try{
+    let species = request.query.species;
+    console.log(species);
+    // let petData = data.find(pet => pet.species === species);
+    let dataToGroom = data.find(pet => pet.species === species);
+    let dataToSend = new Pet(dataToGroom);
+    response.status(200).send(dataToSend);
+  } catch(error){
+    next(error);
+  }
+});
+
+class Pet {
+  constructor(petObj){
+    this.name = petObj.name;
+    this.breed = petObj.breed;
+  }
+}
+
+
+// catch all and should live at the bottom
+app.get('*', (request, response)=>{
+  response.status(404).send('This route does not exist');
+});
+
 
 // ***** ERROR HANDLING **********
-
+//errors
+//handle any error
+app.use((error, request, next)=>{
+  response.status(500).send(error.message);
+});
 
 
 // ***** SERVER START **********

@@ -6,7 +6,7 @@ const { response } = require('express');
 // ***** REQUIRES **********
 const express = require('express');
 require('dotenv').config();
-// let data = require('./data/pets.json');
+// let data = require('./data/weather.json');
 // const cors = require('cors');
 
 console.log('heeyeye');
@@ -39,13 +39,13 @@ app.get('/hello', (request, response)=>{
 });
 
 
-// app.get('/pet', (request, response, next)=>{
+// app.get('/weather', (request, response, next)=>{
 //   try{
 //     //let lat =
 //     // let lon =
 //     //let searchquerylocation =
-//     let species = request.query.species;
-//     console.log(species);
+//     let cities = request.query.cities;
+//     console.log(cities);
 //     // let petData = data.find(pet => pet.species === species);
 //     let dataToGroom = data.find(pet => pet.species === species);
 //     let dataToSend = new Pet(dataToGroom);

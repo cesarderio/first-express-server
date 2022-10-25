@@ -1,0 +1,19 @@
+{
+  "name": "first-express-server",
+  "version": "1.0.0",
+  "description": "first server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesarderio/first-express-server.git"
+  },
+  "author": "Raphael Cesar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cesarderio/first-express-server/issues"
+  },
+  "homepage": "https://github.com/cesarderio/first-express-server#readme"
+}

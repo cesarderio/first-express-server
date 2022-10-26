@@ -1,13 +1,13 @@
 'use strict';
 
-console.log('Yasss! Our first server!');
-
-const { response } = require('express');
 // ***** REQUIRES **********
+const { response } = require('express');
 const express = require('express');
 require('dotenv').config();
-// let data = require('./data/weather.json');
+let data = require('./data/weather.json');
 // const cors = require('cors');
+// const axios = require('axios');
+// const getForecast = require('');
 
 console.log('heeyeye');
 
@@ -39,35 +39,39 @@ app.get('/hello', (request, response)=>{
 });
 
 
-// app.get('/weather', (request, response, next)=>{
-//   try{
-//     //let lat =
-//     // let lon =
-//     //let searchquerylocation =
-//     let cities = request.query.cities;
-//     console.log(cities);
-//     // let petData = data.find(pet => pet.species === species);
-//     let dataToGroom = data.find(pet => pet.species === species);
-//     let dataToSend = new Pet(dataToGroom);
-//     response.status(200).send(dataToSend);
-//   } catch(error){
-//     next(error);
-//   }
-// });
 
-// class Pet {
-//   constructor(petObj){
-//     this.name = petObj.name;
-//     this.breed = petObj.breed;
-//   }
-// }
+app.get('/weather', (request, response, next)=>{
+  try{
+    //let lat =
+    // let lon =
+    //let searchquerylocation =
+    const { lat, lon, response } = request.query
+
+    const cityName = request.query?.city_name
+    // let petData = data.find(pet => pet.species === species);
+    let dataToGroom = data.find(city => Math.floor(city?.lat) === Math.floor(lat) && Math.floor(city?.lon) === Math.floor(lon));
+    
+    let dataToSend = new cityForecast(dataToGroom);
+
+    response.status(200).send(dataToSend);
+  } catch(error){
+    next(error);
+  }
+});
+
+class City {
+  constructor(cityObj){
+    this.name = cityObj.name;
+    this.lat = cityObj.lat;
+    this.long = cityObj.long;
+  }
+}
 
 
 // catch all and should live at the bottom
 app.get('*', (request, response)=>{
   response.status(404).send('This route does not exist');
 });
-
 
 // ***** ERROR HANDLING **********
 //errors
@@ -76,6 +80,7 @@ app.use((error, request, next)=>{
   response.status(500).send(error.message);
 });
 
-
 // ***** SERVER START **********
-app.listen(PORT, ()=>console.log(`We are up and running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`We are up and running on port ${PORT}`);
+});

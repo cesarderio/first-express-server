@@ -8,6 +8,7 @@ require('dotenv').config();
 const cors = require('cors');
 // const axios = require('axios');
 const getForecast = require('./modules/weather.js');
+const getMovies = require('./modules/movies');
 // const movie = require('./modules/movie');
 
 const app = express();
@@ -36,6 +37,17 @@ let getWeather = async (req, res) =>{
 };
 app.get('/weather', getWeather);
 
+let findMovies = async (req, res) => {
+  const cityMovie = req.query.cityMovie;
+  try {
+    let getMoviesResponse = await getMovies(cityMovie);
+    res.send(getMoviesResponse);
+  } catch (error) {
+    console.error(error);
+    response.statusMessage(500).send(error.message);
+  }
+};
+app.get('/movies', findMovies);
 
 // app.get('/weather', (request, response, next)=>{
 //   console.log(request);
@@ -59,12 +71,12 @@ app.get('/weather', getWeather);
 //   }
 // }
 // catch all and should live at the bottom
-app.get('*', (request, response)=>{
-  response.status(404).send('This route does not exist');
+app.get('*', (req, res)=>{
+  res.status(404).send('This route does not exist');
 });
 
 // ***** ERROR HANDLING **********
-app.use((error, request, next)=>{
+app.use((error, request, response, next)=>{
   response.status(500).send(error.message);
 });
 

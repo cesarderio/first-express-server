@@ -38,10 +38,11 @@ app.get('/hello', (request, response)=>{
 
 app.get('/weather', (request, response, next)=>{
   try{
-    //let lat =
-    // let lon =
-    //let searchquerylocation =
-    // const { lat, lon, response } = request.query
+    let lat = request.query.lat;
+    let lon = request.query.long;
+ 
+    //let searchquerylocation = request.query.searchquery
+
     // console.log('hello test');
 
     let city = request.query.city;

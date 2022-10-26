@@ -9,7 +9,7 @@ let data = require('./data/weather.json');
 // const axios = require('axios');
 // const getForecast = require('');
 
-console.log('heeyeye');
+console.log('hello hello');
 
 // once express is in we need to use it - per express docs
 // app === server
@@ -23,9 +23,7 @@ const PORT = process.env.PORT || 3002;
 // 3002 - if my server is up on 3002, then I know there is something wrong with my .env file or I didn't bring in dotenv library
 
 // ***** ENDPOINTS **********
-
 // Base endpoint
-
 app.get('/', (request, response)=>{
   console.log('This is showing up in my terminal');
   response.status(200).send('Welcome to my server');
@@ -38,20 +36,22 @@ app.get('/hello', (request, response)=>{
   response.status(200).send(`Hello ${firstName} ${lastName}! Welcome to my server`);
 });
 
-
-
 app.get('/weather', (request, response, next)=>{
   try{
     //let lat =
     // let lon =
     //let searchquerylocation =
-    const { lat, lon, response } = request.query
+    // const { lat, lon, response } = request.query
+    console.log('hello test');
 
-    const cityName = request.query?.city_name
+    let city = request.query.city;
     // let petData = data.find(pet => pet.species === species);
-    let dataToGroom = data.find(city => Math.floor(city?.lat) === Math.floor(lat) && Math.floor(city?.lon) === Math.floor(lon));
-    
-    let dataToSend = new cityForecast(dataToGroom);
+    let dataToFind = data.find(weather => weather.city === city);
+
+    let dataToSend = new CityForecast(dataToFind);
+
+    // let mapToFind = dataToSend.data.map(data => ({ date: data.datetime, description: `Low of ${data.low_temp}, High of ${data.high_temp} and ${data.weather.description}`
+    // }));
 
     response.status(200).send(dataToSend);
   } catch(error){
@@ -59,11 +59,12 @@ app.get('/weather', (request, response, next)=>{
   }
 });
 
-class City {
+class CityForecast {
   constructor(cityObj){
-    this.name = cityObj.name;
+    this.name = cityObj.city_name;
     this.lat = cityObj.lat;
-    this.long = cityObj.long;
+    this.lon = cityObj.lon;
+    this.low_temp = cityObj.data.low_temp;
   }
 }
 

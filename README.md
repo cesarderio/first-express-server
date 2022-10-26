@@ -25,6 +25,7 @@ run and npm install nodemon, cors, and init. We need to create the package.json,
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 Name of feature: ________________________________
+Set up server repository
 
 Estimate of time needed to complete: _____
 
@@ -38,17 +39,7 @@ Actual time needed to complete: _____
 
 Name of feature: ________________________________
 
-Estimate of time needed to complete: _____
-
-Start time: _____
-
-Finish time: _____
-
-Actual time needed to complete: _____
-
------------------------------------------------
-
-Name of feature: ________________________________
+Weather (placeholder): As a user of City Explorer, I want to see weather info for the city I searched, so that I know how to pack for an upcoming trip.
 
 Estimate of time needed to complete: _____
 
@@ -61,6 +52,22 @@ Actual time needed to complete: _____
 -----------------------------------------------
 
 Name of feature: ________________________________
+
+Errors (revisited): As a user, I want clear messages if something goes wrong so I know if I need to make any changes or try again in a different manner.
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+-----------------------------------------------
+
+Name of feature: ________________________________
+
+Weather (live): As a user of City Explorer, I want to see weather info for the city I searched, so that I know how to pack for an upcoming trip.
 
 Estimate of time needed to complete: _____
 

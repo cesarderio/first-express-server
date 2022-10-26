@@ -4,12 +4,12 @@
 const { response } = require('express');
 const express = require('express');
 require('dotenv').config();
-let data = require('./data/weather.json');
+let weatherData = require('./data/weather.json');
 // const cors = require('cors');
 // const axios = require('axios');
 // const getForecast = require('');
 
-console.log('hello hello');
+
 
 // once express is in we need to use it - per express docs
 // app === server
@@ -25,12 +25,12 @@ const PORT = process.env.PORT || 3002;
 // ***** ENDPOINTS **********
 // Base endpoint
 app.get('/', (request, response)=>{
-  console.log('This is showing up in my terminal');
+  // console.log('This is showing up in my terminal');
   response.status(200).send('Welcome to my server');
 });
 
 app.get('/hello', (request, response)=>{
-  console.log(request.query);
+  // console.log(request.query);
   let firstName = request.query.firstName;
   let lastName = request.query.lastName;
   response.status(200).send(`Hello ${firstName} ${lastName}! Welcome to my server`);
@@ -42,15 +42,18 @@ app.get('/weather', (request, response, next)=>{
     // let lon =
     //let searchquerylocation =
     // const { lat, lon, response } = request.query
-    console.log('hello test');
+    // console.log('hello test');
 
     let city = request.query.city;
     // let petData = data.find(pet => pet.species === species);
-    let dataToFind = data.find(weather => weather.city === city);
+    let dataToFind = weatherData.find(weatherDay => {
+      console.log(weatherDay.city_name, ' === ', city);
+      return weatherDay.city_name === city;});
+    console.log('test',dataToFind);
 
     let dataToSend = new CityForecast(dataToFind);
 
-    // let mapToFind = dataToSend.data.map(data => ({ date: data.datetime, description: `Low of ${data.low_temp}, High of ${data.high_temp} and ${data.weather.description}`
+    // let mapToFind = dataToSend.data.map(data => ({ date: weatherData.datetime, description: `Low of ${weathData.low_temp}, High of ${data.high_temp} and ${data.weather.description}`
     // }));
 
     response.status(200).send(dataToSend);
@@ -64,10 +67,12 @@ class CityForecast {
     this.name = cityObj.city_name;
     this.lat = cityObj.lat;
     this.lon = cityObj.lon;
-    this.low_temp = cityObj.data.low_temp;
+    // this.weather = cityObj[0].weather.description;
+    console.log(cityObj.data[0].weather);
+    // this.low_temp = weatherData.data.low_temp;
   }
 }
-
+console.log('line 12', weatherData[0].data[0].weather.description);
 
 // catch all and should live at the bottom
 app.get('*', (request, response)=>{

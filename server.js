@@ -24,7 +24,6 @@ app.get('/', (request, response)=>{
   response.status(200).send('Welcome to my server');
 });
 
-
 let getWeather = async (req, res) =>{
   const { lat, lon } = req.query;
   try {
@@ -38,7 +37,8 @@ let getWeather = async (req, res) =>{
 app.get('/weather', getWeather);
 
 let findMovies = async (req, res) => {
-  const cityMovie = req.query.cityMovie;
+  const cityMovie = req.query;
+  console.log(cityMovie, 'city movie is cityMovie');
   try {
     let getMoviesResponse = await getMovies(cityMovie);
     res.send(getMoviesResponse);

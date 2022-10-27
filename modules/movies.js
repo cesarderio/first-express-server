@@ -22,7 +22,7 @@ let getMovies = (cityMovie) =>{
   console.log('made it into getMovies');
   const key = 'movies:' + cityMovie;
   // console.log('query', request);
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityMovie}&language=en-US&page=1`;
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityMovie}&language=en-US&page=5`;
 
   if (cache[key] && Date.now() - cache[key].timestamp < 3600000) {
     console.log('Movie found');

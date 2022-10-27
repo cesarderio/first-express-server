@@ -6,6 +6,8 @@ const axios = require('axios');
 class Forecast {
   constructor(dayObj) {
     this.date = dayObj.datetime;
+    this.lat = dayObj.lat;
+    this.lon = dayObj.lon;
     this.description =
       'Low of ' +
       dayObj.low_temp +
@@ -19,7 +21,7 @@ class Forecast {
 let getForecast = (lat,lon) => {
   console.log('made it into getForecast');
   const key = 'weather:'+ lat + lon;
-  const url = `https://api.weatherbit.io/v2.0/forecast/daily?days=7&units=I&lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`;
+  const url = `http://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`;
   if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
     console.log('Weather found', key);
   } else {

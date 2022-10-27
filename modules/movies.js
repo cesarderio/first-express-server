@@ -2,7 +2,7 @@
 'use strict';
 let cache = require('./cache.js');
 const axios = require('axios');
-
+console.log('WTF',cache);
 class Movie {
   constructor(cityObj) {
     this.title = cityObj.title;
@@ -18,13 +18,13 @@ class Movie {
 
 // https://api.themoviedb.org/3/movie/550?api_key=4a6a3feeb68c7f8bc6f5794dba741ad8
 
-let getMovies = (cityMovie) =>{
+function getMovies(cityMovie) {
   console.log('made it into getMovies');
   const key = 'movies:' + cityMovie;
   // console.log('query', request);
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityMovie}&language=en-US&page=5`;
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityMovie}&language=en-US`;
 
-  if (cache[key] && Date.now() - cache[key].timestamp < 3600000) {
+  if (cache[key] && Date.now() - cache[key].timestamp < 3600) {
     console.log('Movie found');
   } else {
     console.log('Movie not found');
@@ -34,9 +34,9 @@ let getMovies = (cityMovie) =>{
       .get(url)
       .then((movieResponse) => parseMovie(movieResponse.data));
   }
-  console.log('cache', cache);
+  console.log('CASH', cache[key].data);
   return cache[key].data;
-};
+}
 
 function parseMovie(movieResponse) {
   try {

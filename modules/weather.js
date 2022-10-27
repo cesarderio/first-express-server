@@ -1,5 +1,4 @@
 'use strict';
-
 let cache = require('./cache.js');
 const axios = require('axios');
 
@@ -22,6 +21,7 @@ let getForecast = (lat,lon) => {
   console.log('made it into getForecast');
   const key = 'weather:'+ lat + lon;
   const url = `http://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`;
+  console.log(url);
   if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
     console.log('Weather found', key);
   } else {
@@ -44,6 +44,5 @@ let parseWeather = (weatherResponse) =>{
     return Promise.reject(error);
   }
 };
-
 
 module.exports = getForecast;

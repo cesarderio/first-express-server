@@ -5,16 +5,13 @@ require('dotenv').config();
 const cors = require('cors');
 const getForecast = require('./modules/weather.js');
 const getMovies = require('./modules/movies');
-
 const app = express();
-// middleware to share resources across the internet
+
 app.use(cors());
-// define my port
+
 const PORT = process.env.PORT || 3002;
 
-// ***** ENDPOINTS **********
 app.get('/', (request, response)=>{
-
   response.status(200).send('Welcome to my server');
 });
 
@@ -44,17 +41,14 @@ let findMovies = async (request, response) => {
 };
 app.get('/movies', findMovies);
 
-// catch all and should live at the bottom
 app.get('*', (request, response)=>{
   response.status(404).send('This route does not exist');
 });
 
-// ***** ERROR HANDLING **********
 app.use((error, request, response, next)=>{
   response.status(500).send(error.message);
 });
 
-// ***** SERVER START **********
 app.listen(PORT, () => {
   console.log(`We are up and running on port ${PORT}`);
 });

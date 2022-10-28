@@ -1,4 +1,3 @@
-
 'use strict';
 let cache = require('./cache.js');
 const axios = require('axios');
@@ -15,8 +14,6 @@ class Movie {
     this.timestamp = Date.now();
   }
 }
-
-// https://api.themoviedb.org/3/movie/550?api_key=4a6a3feeb68c7f8bc6f5794dba741ad8
 
 function getMovies(cityMovie) {
   console.log('made it into getMovies');

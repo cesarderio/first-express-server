@@ -2,7 +2,6 @@
 // ***** REQUIRES **********
 const express = require('express');
 require('dotenv').config();
-// let data = require('./data/weather.json');
 const cors = require('cors');
 const getForecast = require('./modules/weather.js');
 const getMovies = require('./modules/movies');
@@ -15,7 +14,7 @@ const PORT = process.env.PORT || 3002;
 
 // ***** ENDPOINTS **********
 app.get('/', (request, response)=>{
-  // console.log('This is showing up in my terminal');
+
   response.status(200).send('Welcome to my server');
 });
 

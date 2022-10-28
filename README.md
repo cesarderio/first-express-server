@@ -80,6 +80,7 @@ Actual time needed to complete: _____
 -----------------------------------------------
 
 Name of feature: ________________________________
+Movies: As a user of City Explorer, I want to see info about movies related to the city I searched, so that I can learn more about the destination.
 
 Estimate of time needed to complete: _____
 
@@ -92,6 +93,33 @@ Actual time needed to complete: _____
 -----------------------------------------------
 
 Name of feature: ________________________________
+Publish: Deploy your server. As a user, I want to access the City Explorer application on the web, so that anyone can explore from anywhere.
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+-----------------------------------------------
+
+Name of feature: ________________________________
+ Refactor: Modularize the back-end codebase.
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+-----------------------------------------------
+
+Name of feature: ________________________________
+Refactor: Componentize the front-end codebase.
 
 Estimate of time needed to complete: _____
 

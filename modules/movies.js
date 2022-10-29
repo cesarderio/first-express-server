@@ -1,7 +1,6 @@
 'use strict';
 let cache = require('./cache.js');
 const axios = require('axios');
-console.log('WTF',cache);
 class Movie {
   constructor(cityObj) {
     this.title = cityObj.title;
